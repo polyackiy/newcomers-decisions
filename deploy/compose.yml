@@ -1,0 +1,15 @@
+services:
+  app:
+    build: ..
+    restart: unless-stopped
+    env_file: /etc/newcomers.env
+    environment:
+      AI_STATE_DIR: /app/state
+      AI_TOTAL_REQUESTS: '20'
+    volumes:
+      - ai-state:/app/state
+    ports:
+      - '127.0.0.1:3000:3000'
+    mem_limit: 768m
+volumes:
+  ai-state:
